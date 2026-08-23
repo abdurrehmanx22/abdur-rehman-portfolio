@@ -3,7 +3,7 @@ export const personal = {
   title: 'Data Science, Data Analytics & Business Intelligence Professional',
   email: 'abdurrehman.x22@gmail.com',
   phone: '+92 316 5006015',
-  linkedin: 'https://linkedin.com',
+  linkedin: 'https://www.linkedin.com/in/abdurrehmanx22/',
   photo: '/images/profile/profile-2.png',
   workSamplesUrl: '/docs/Abdurrehman-Work-Samples.pdf',
   summary:

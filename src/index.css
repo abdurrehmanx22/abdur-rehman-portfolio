@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-bg: #ffffff;
+  --color-surface: #f8f9fb;
+  --color-card: #ffffff;
+  --color-border: #e6e8ec;
+  --color-ink: #1c2029;
+  --color-ink-muted: #5c6270;
+  --color-brand: #6d28d9;
+  --color-brand-dark: #5521ad;
+  --color-brand-soft: #f2ebfc;
+  --font-sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Antonio', 'Inter', system-ui, sans-serif;
+}
+
+.dark {
+  --color-bg: #121212;
+  --color-surface: #191919;
+  --color-card: #1c1c1c;
+  --color-border: #2c2c2c;
+  --color-ink: #f5f5f5;
+  --color-ink-muted: #9a9a9a;
+  --color-brand: #c8ff4d;
+  --color-brand-dark: #a3d629;
+  --color-brand-soft: rgba(200, 255, 77, 0.14);
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+/* Subtle film-grain texture over the dark theme, matching the reference design */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  transition: opacity 0.3s ease;
+}
+
+.dark .grain-overlay {
+  opacity: 0.05;
+}

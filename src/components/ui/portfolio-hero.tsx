@@ -367,21 +367,22 @@ export default function PortfolioHero() {
           >
             Hi
           </motion.div>
+        </div>
+        </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
-            className="mt-16 text-sm sm:text-base"
-            style={{ color: "var(--color-ink-muted)" }}
-          >
-            I build Power BI dashboards, data pipelines, and forecasting models that turn raw
-            business data into decisions leadership can act on — drawing on corporate and
-            freelance experience across banking, textiles, e-commerce, and education. Open to
-            freelance projects and full-time roles.
-          </motion.p>
-        </div>
-        </div>
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mt-10 w-full text-center text-sm sm:text-base md:text-left"
+          style={{ color: "var(--color-ink-muted)" }}
+        >
+          I build Power BI dashboards, data pipelines, and forecasting models that turn raw data
+          into decisions leadership can act on. I'm not limited to one industry or data source —
+          from spreadsheets and APIs to cloud warehouses, I can pull, clean, and visualize data
+          for any business, in any sector. Open to freelance projects and full-time roles.
+        </motion.p>
 
         {/* Mobile-only scroll indicator */}
         <div className="mt-10 flex flex-col items-center gap-4 md:hidden">

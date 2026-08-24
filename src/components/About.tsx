@@ -7,7 +7,12 @@ export default function About() {
   return (
     <section id="about" className="py-24">
       <Container>
-        <SectionHeading eyebrow="About me" title="More About Me" description={personal.summary} />
+        <SectionHeading
+          eyebrow="Get to know me"
+          title="More About Me"
+          description={personal.summary}
+          descriptionClassName="max-w-none"
+        />
 
         <Stats />
       </Container>

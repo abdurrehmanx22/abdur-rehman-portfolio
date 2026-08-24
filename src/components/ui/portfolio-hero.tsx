@@ -378,10 +378,10 @@ export default function PortfolioHero() {
           className="mt-10 w-full text-center text-sm sm:text-base md:text-left"
           style={{ color: "var(--color-ink-muted)" }}
         >
-          I build Power BI dashboards, data pipelines, and forecasting models that turn raw data
-          into decisions leadership can act on. I'm not limited to one industry or data source —
-          from spreadsheets and APIs to cloud warehouses, I can pull, clean, and visualize data
-          for any business, in any sector. Open to freelance projects and full-time roles.
+          I turn raw, disconnected data into dashboards, pipelines, and forecasts that leadership
+          can act on — whatever the industry, source, or format. From spreadsheets and APIs to
+          cloud warehouses, I pull it together, clean it up, and make it tell a clear story. Open
+          to freelance projects and full-time roles.
         </motion.p>
 
         {/* Mobile-only scroll indicator */}

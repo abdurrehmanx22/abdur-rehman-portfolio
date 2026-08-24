@@ -335,7 +335,7 @@ export default function PortfolioHero() {
           style={{ color: "var(--color-ink-muted)" }}
         >
           I turn raw, disconnected data into dashboards, pipelines, and forecasts that leadership
-          can act on — whatever the industry, source, or format. From spreadsheets and APIs to
+          can act on, whatever the industry, source, or format. From spreadsheets and APIs to
           cloud warehouses, I pull it together, clean it up, and make it tell a clear story. Open
           to freelance projects and full-time roles.
         </motion.p>

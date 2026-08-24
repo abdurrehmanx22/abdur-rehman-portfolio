@@ -77,7 +77,7 @@ export default function Contact() {
                 className="relative mt-4 max-w-lg text-white/70"
               >
                 Whether it's a messy dataset, a dashboard nobody trusts yet, or your next analytics
-                project — let's figure out how to make your data work for you.
+                project, let's figure out how to make your data work for you.
               </motion.p>
 
               <motion.form

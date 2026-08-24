@@ -8,11 +8,7 @@ export default function Skills() {
   return (
     <section id="skills" className="bg-surface py-24">
       <Container>
-        <SectionHeading
-          eyebrow="What I work with"
-          title="Skills"
-          description="From raw SQL and Python to cloud data warehousing and boardroom-ready Power BI reporting."
-        />
+        <SectionHeading eyebrow="What I work with" title="Skills" />
 
         <motion.div
           variants={staggerContainer(0.1)}

@@ -28,12 +28,7 @@ export default function Services() {
   return (
     <section id="services" className="py-24">
       <Container>
-        <SectionHeading
-          eyebrow="What I can do for you"
-          title="Services"
-          description="From raw data to a report your stakeholders actually trust — here's what that work looks like end to end."
-          descriptionClassName="max-w-none"
-        />
+        <SectionHeading eyebrow="What I can do for you" title="Services" />
         <Accordion items={items} hoverToExpand />
       </Container>
     </section>

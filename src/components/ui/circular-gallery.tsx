@@ -113,7 +113,7 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
     const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
       if (!isDragging) return;
       const deltaX = e.clientX - dragStartX.current;
-      if (Math.abs(deltaX) > 3) hasDraggedRef.current = true;
+      if (Math.abs(deltaX) > 8) hasDraggedRef.current = true;
       setRotation(dragStartRotation.current - deltaX * 0.35);
     };
 

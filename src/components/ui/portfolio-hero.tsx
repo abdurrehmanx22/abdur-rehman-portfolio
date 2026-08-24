@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { personal } from "@/data/content";
 import HeroReleaseWidget from "@/components/HeroReleaseWidget";
 
@@ -97,11 +97,6 @@ export default function PortfolioHero() {
   const sciWrapRef = useRef<HTMLDivElement>(null);
   const taglineWrapRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    if (scrolled) setMobileMenuOpen(false);
-  }, [scrolled]);
 
   const scrollToNext = () => {
     document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" });
@@ -203,86 +198,47 @@ export default function PortfolioHero() {
               </span>
             </motion.a>
           ) : (
-            <motion.div
+            <motion.nav
               key="full"
               initial={{ opacity: 0, y: -16, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -16, scale: 0.9 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="relative"
+              className="flex items-center gap-1 rounded-full py-1.5 pl-1.5 pr-1.5 shadow-lg shadow-black/5 sm:gap-2 sm:py-2 sm:pl-2 sm:pr-2"
+              style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
             >
-              <nav
-                className="flex items-center gap-2 rounded-full py-2 pl-2 pr-2 shadow-lg shadow-black/5"
-                style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
-              >
-                <a href="#top" className="shrink-0">
-                  <img
-                    src={personal.photo}
-                    alt={personal.name}
-                    className="h-9 w-9 rounded-full object-cover"
-                    style={{ objectPosition: "50% 15%" }}
-                  />
-                </a>
-                <div className="hidden items-center gap-7 px-6 min-[480px]:flex">
-                  {navLinks.map((link) => (
-                    <motion.a
-                      key={link.label}
-                      href={link.href}
-                      whileHover={{ y: -2 }}
-                      className="text-sm font-medium transition-colors"
-                      style={{ color: "var(--color-ink-muted)" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-ink)")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-ink-muted)")}
-                    >
-                      {link.label}
-                    </motion.a>
-                  ))}
-                </div>
-                <motion.a
-                  href="#contact"
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="rounded-full bg-neutral-900 px-6 py-2.5 text-sm font-semibold text-white"
-                >
-                  Contact
-                </motion.a>
-                <button
-                  type="button"
-                  onClick={() => setMobileMenuOpen((v) => !v)}
-                  aria-label="Toggle menu"
-                  aria-expanded={mobileMenuOpen}
-                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full min-[480px]:hidden"
-                  style={{ color: "var(--color-ink)" }}
-                >
-                  {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-                </button>
-              </nav>
-
-              <AnimatePresence>
-                {mobileMenuOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute left-1/2 top-full mt-2 flex w-40 -translate-x-1/2 flex-col gap-1 rounded-2xl p-2 shadow-lg shadow-black/10 min-[480px]:hidden"
-                    style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
+              <a href="#top" className="shrink-0">
+                <img
+                  src={personal.photo}
+                  alt={personal.name}
+                  className="h-7 w-7 rounded-full object-cover sm:h-9 sm:w-9"
+                  style={{ objectPosition: "50% 15%" }}
+                />
+              </a>
+              <div className="flex items-center gap-1.5 px-1.5 sm:gap-4 sm:px-4 md:gap-7 md:px-6">
+                {navLinks.map((link) => (
+                  <motion.a
+                    key={link.label}
+                    href={link.href}
+                    whileHover={{ y: -2 }}
+                    className="whitespace-nowrap text-[10px] font-medium transition-colors sm:text-sm"
+                    style={{ color: "var(--color-ink-muted)" }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-ink)")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-ink-muted)")}
                   >
-                    {navLinks.map((link) => (
-                      <a
-                        key={link.label}
-                        href={link.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="rounded-xl px-4 py-2 text-center text-sm font-medium"
-                        style={{ color: "var(--color-ink-muted)" }}
-                      >
-                        {link.label}
-                      </a>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
+                    {link.label}
+                  </motion.a>
+                ))}
+              </div>
+              <motion.a
+                href="#contact"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                className="whitespace-nowrap rounded-full bg-neutral-900 px-2.5 py-1.5 text-[10px] font-semibold text-white sm:px-6 sm:py-2.5 sm:text-sm"
+              >
+                Contact
+              </motion.a>
+            </motion.nav>
           )}
         </AnimatePresence>
       </header>
@@ -309,7 +265,7 @@ export default function PortfolioHero() {
               style={{ color: "var(--color-ink)" }}
             />
           </div>
-          <div ref={sciWrapRef}>
+          <div ref={sciWrapRef} className="mt-2 sm:mt-0">
             <BlurText
               text="SCIENTIST"
               delay={80}

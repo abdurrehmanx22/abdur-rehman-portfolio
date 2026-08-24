@@ -5,18 +5,37 @@ import { HiOutlineMail } from 'react-icons/hi';
 import Container from './Container';
 import { personal } from '../data/content';
 
+const FORM_ENDPOINT = 'https://formspree.io/f/xbgrvgok';
+
 export default function Contact() {
   const prefersReducedMotion = useReducedMotion();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [service, setService] = useState('');
   const [message, setMessage] = useState('');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(service ? `Project enquiry: ${service}` : 'Project enquiry');
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nService needed: ${service}\n\n${message}`);
-    window.location.href = `mailto:${personal.email}?subject=${subject}&body=${body}`;
+    setStatus('submitting');
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, service, message }),
+      });
+      if (res.ok) {
+        setStatus('success');
+        setName('');
+        setEmail('');
+        setService('');
+        setMessage('');
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -80,6 +99,19 @@ export default function Contact() {
                 project, let's figure out how to make your data work for you.
               </motion.p>
 
+              {status === 'success' ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="relative mt-8 rounded-2xl border border-[#c8ff4d]/30 bg-[#c8ff4d]/10 p-6"
+                >
+                  <p className="font-semibold text-[#c8ff4d]">Message sent.</p>
+                  <p className="mt-1 text-sm text-white/70">
+                    Thanks for reaching out. I'll get back to you soon.
+                  </p>
+                </motion.div>
+              ) : (
               <motion.form
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -150,14 +182,22 @@ export default function Contact() {
 
                 <motion.button
                   type="submit"
+                  disabled={status === 'submitting'}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
-                  className="inline-flex items-center gap-2 rounded-full bg-[#c8ff4d] px-8 py-3 text-sm font-semibold text-neutral-900"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#c8ff4d] px-8 py-3 text-sm font-semibold text-neutral-900 disabled:opacity-60"
                 >
                   <HiOutlineMail className="text-base" />
-                  Submit
+                  {status === 'submitting' ? 'Sending...' : 'Submit'}
                 </motion.button>
+
+                {status === 'error' && (
+                  <p className="text-sm text-red-400">
+                    Something went wrong. Please try again, or email me directly at {personal.email}.
+                  </p>
+                )}
               </motion.form>
+              )}
             </div>
           </div>
         </motion.div>
